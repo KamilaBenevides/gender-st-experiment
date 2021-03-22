@@ -36,12 +36,20 @@ angular.module('tutor').controller("PosttestCtrl", function($scope, $location, U
     "Eu realmente não consegui entender muito o material desta atividade",
     "A boa organização do conteúdo me ajudou a ter certeza de que eu aprenderia este material", 
     "Foi um prazer trabalhar em uma atividade tão bem planejada.",
+    "Comparado com a maioria das pessoas, você, em geral, consegue o que quer na vida?",
+    "Você irritava seus pais com frequência quando era criança ou adolescente?"
+    ];
+    $scope.questions2 = [
+    "Com que frequência você conquistou algo que lhe deixou tão empolgado/a que lhe fez dar mais duro ainda?",
+    "Eu sinto que tenho progredido no sentido de ser bem sucedido na vida.",
+    "Na sua infância e adolescência, você costumava “passar dos limites” ao fazer coisas que os seus pais não toleravam?",
+    "Na sua infância e adolescência, alguma vez você agiu de maneira que seus pais julgassem repreensível?"
     ];
     $scope.answers = [];
 
     $scope.processAnswers = function() {
 
-        if ($scope.answers.length < 36) {
+        if ($scope.answers.length < 42) {
             $scope.msg = "Por favor, responda todas as perguntas!"
         } else {
 
