@@ -55,10 +55,12 @@ tutorServices.service("User", function($http) {
         email: "",
         whatsapp:"",
         pretestPoints: 0,
+        pretest2Points: 0,
         activityPoints: 0,
         posttestPoints: 0,
         flowPoints: 0,
         pre: [],
+        pre2: [],
         post: [],
         flow: [],
     };
@@ -105,6 +107,10 @@ tutorServices.service("User", function($http) {
         resp.pretestPoints = value;
     };
 
+    this.setPretest2Points = function(value) {
+        resp.pretest2Points = value;
+    };
+
     this.setPosttestPoints = function(value) {
         resp.posttestPoints = value;
     };
@@ -126,6 +132,10 @@ tutorServices.service("User", function($http) {
 
     this.setPre = function(value) {
         resp.pre = value;
+    };
+
+    this.setPre2 = function(value) {
+        resp.pre2 = value;
     };
 
     this.setPost = function(value) {

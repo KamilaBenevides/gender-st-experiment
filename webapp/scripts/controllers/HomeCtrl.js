@@ -10,6 +10,7 @@ angular.module('tutor').controller("HomeCtrl", function($scope, $location, $mdDi
     var totalPoints = 0;
     var userAvatar = "assets/" + configService.getTheme() + "/images/avatar1.png";
     var level = 0;
+    var testeK = 0;
 
     var inc = false;
     var dec = false;
@@ -69,7 +70,7 @@ angular.module('tutor').controller("HomeCtrl", function($scope, $location, $mdDi
     $scope.hideAvatar = function() {
         $scope.showAvatar = false;
         $scope.showQuestions = true;
-        updatePoints(0); 
+        updatePoints(10); 
     };
 
     $scope.getUsers = function() {
@@ -252,6 +253,7 @@ angular.module('tutor').controller("HomeCtrl", function($scope, $location, $mdDi
             totalPoints += value;
             level++;
             increment = true;
+            testeK += 1; 
             new Audio('assets/default/audio/right.mp3').play();
         };
 
@@ -312,7 +314,7 @@ angular.module('tutor').controller("HomeCtrl", function($scope, $location, $mdDi
             playAnimation("green");
 
             //badge level 5
-            if (totalPoints == 25 && levelFiveFlag) {
+            if (totalPoints == 5 && levelFiveFlag) {
                 levelFiveFlag = false;
 
                 $mdDialog.show({
@@ -330,7 +332,7 @@ angular.module('tutor').controller("HomeCtrl", function($scope, $location, $mdDi
                 }, 2000);
 
 
-            } else if (totalPoints == 50 && levelTenFlag) {
+            } else if (totalPoints == 10 && levelTenFlag) {
                 levelTenFlag = false;
                 $mdDialog.show({
                     controller: 'Badge10Ctrl',

@@ -63,7 +63,7 @@ angular.module('tutor').controller("PretestCtrl", function($scope, $window, $loc
 
             console.log(User.getResponse());
             // User.save();
-            $location.path("/home");
+            $location.path("/pretest2");
 
         };
 
