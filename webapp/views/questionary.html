@@ -49,7 +49,7 @@
             <md-input-container flex-gt-sm>
                 <label ng-required="true">Gênero</label>
                 <md-select ng-required="true" ng-model="gender">
-                    <md-option ng-repeat="g in ['Masculino','Feminino', 'Prefiro não Responder']">
+                    <md-option ng-repeat="g in ['Masculino','Feminino', 'Cisgênero','Transgênero', 'Não-binário','Prefiro não Responder']">
                         {{g}}
                     </md-option>
                 </md-select>
@@ -59,7 +59,7 @@
             <md-input-container class="block" flex-gt-sm>
                 <label>Orientação sexual</label>
                 <md-select ng-required="true" ng-model="sexualOrientation">
-                    <md-option ng-repeat="g in ['Cisgênero','Transgênero', 'Não-binário', 'Prefiro não Responder']   ">
+                    <md-option ng-repeat="g in ['Homossexual', 'Heterossexual', 'Pansexual', 'Bissexual', 'Assexual', 'Prefiro não Responder']   ">
                         {{g}}
                     </md-option>
                 </md-select>
