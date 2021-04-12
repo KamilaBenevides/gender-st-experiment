@@ -54,6 +54,10 @@ tutorServices.service("User", function($http) {
         city: "",
         email: "",
         whatsapp:"",
+        universityEducation: "",
+        institucion:"",
+        educationLevel: "",
+        conclusion: "",
         pretestPoints: 0,
         pretest2Points: 0,
         activityPoints: 0,
@@ -70,6 +74,20 @@ tutorServices.service("User", function($http) {
     }
     this.setGender = function(value) {
         resp.gender = value;
+    };
+
+    this.setUniversityEducation = function(value) {
+        resp.universityEducation = value;
+    };
+
+    this.setInstitucion = function(value) {
+        resp.institucion = value;
+    };
+    this.setEducationLevel = function(value) {
+        resp.educationLevel = value;
+    };
+    this.setConclusion = function(value) {
+        resp.conclusion = value;
     };
 
     this.setAge = function(value) {

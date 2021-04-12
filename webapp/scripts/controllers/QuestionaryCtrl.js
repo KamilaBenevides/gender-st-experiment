@@ -46,6 +46,11 @@ angular.module('tutor').controller("QuestionaryCtrl", function ($scope, $locatio
         User.setCity($scope.city);
         User.setEmail($scope.email);
         User.setWhatsapp($scope.whatsapp);
+        
+        User.setUniversityEducation($scope.universityEducation);
+        User.setInstitucion($scope.institucion);
+        User.setEducationLevel($scope.educationLevel);
+        User.setConclusion($scope.conclusion);
   
         User.save();
   

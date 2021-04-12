@@ -117,7 +117,7 @@ angular.module('tutor').controller("HomeCtrl", function($scope, $location, $mdDi
     };
 
     $scope.showPosttest = function() {
-        $location.path("/posttest2");
+        $location.path("/posttest");
     };
 
     $scope.getStars = function() {
