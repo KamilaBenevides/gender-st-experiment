@@ -23,13 +23,9 @@ angular.module('tutor').controller("PosttestCtrl", function($scope, $location, U
 
     $scope.processAnswers = function() {
 
-<<<<<<< HEAD
-        if ($scope.answers.length < 36) {
-=======
 
         if ($scope.answers.length < 17) {
 
->>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
             $scope.msg = "Por favor, responda todas as perguntas!"
         } else {
 

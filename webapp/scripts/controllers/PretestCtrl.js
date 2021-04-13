@@ -27,13 +27,8 @@ angular.module('tutor').controller("PretestCtrl", function($scope, $window, $loc
     $scope.processAnswers = function() {
     
         //  validation
-<<<<<<< HEAD
-        if ($scope.answers.length < 9) {
-=======
-
         if ($scope.answers.length < 9) {
 
->>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
             $scope.msg = "Por favor, responda todas as perguntas!"
         } else {
             function add(a, b) {
@@ -48,10 +43,6 @@ angular.module('tutor').controller("PretestCtrl", function($scope, $window, $loc
             // ans[1] = 5 - ans[1];
             // ans[4] = 5 - ans[4];
             // ans[7] = 5 - ans[7];
-<<<<<<< HEAD
-=======
-            
->>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
             // ans[9] = 5 - ans[9];
             // ans[10] = 5 - ans[10];
             // ans[14] = 5 - ans[14];
@@ -72,12 +63,8 @@ angular.module('tutor').controller("PretestCtrl", function($scope, $window, $loc
             User.setPre(ans);
 
             console.log(User.getResponse());
-<<<<<<< HEAD
-            $location.path("/home");
-=======
             // User.save();
             $location.path("/pretest2");
->>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
 
         };
 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div>
     <div layout="row" layout-align="center center">
         <md-card layout="column" layout-align="center center" flex="auto" width="50%">
@@ -7,7 +6,7 @@
                     <img src="assets/default/images/ufal.png">
                 </div>
                 <div layout="row" layout-align="center center">
-                    <label>Estudo sobre Motivação em Ambientes Educacionais Gamificados</label>
+                    <label>Estudo sobre Desânimo em Ambientes Educacionais Gamificados</label>
                 </div>
                 <div layout="column" layout-align="end end">
                     <img src="assets/default/images/ic.png">
@@ -20,7 +19,7 @@
 
                     <p> Você está sendo convidado(a) a participar do projeto de pesquisa “Estudando Efeitos dos
                         Estereótipos em Ambientes Gamificados de Ensino-Aprendizagem”, dos pesquisadores Ig Iber
-                        Bittencourt, Geiser Chalco Challco e Kelly Bianca Araujo Silva. A seguir, as informações do projeto de pesquisa com relação
+                        Bittencourt, Geiser Chalco Challco e Kamila de Almeida Benevides. A seguir, as informações do projeto de pesquisa com relação
                         a sua participação neste projeto:
                     </p>
                     <p> 1. O estudo se destina a identificar, analisar e avaliar os efeitos de estereótipos em ambientes
@@ -33,7 +32,7 @@
                     <p>3. Os resultados que se desejam alcançar são os seguintes: comparar os efeitos dos estereótipos
                         nos diferentes grupos de participantes do estudo.
                     </p>
-                    <p> 4. A coleta de dados começará em 08 de abril de 2021 e terminará em 30 de abril 2021 </p>
+                    <p> 4. A coleta de dados começará em 05 de abril de 2021 e terminará em 30 de abril 2021 </p>
                     <p>5. O estudo será feito da seguinte maneira: em três etapas conhecidas como pré-teste, intervenção
                         e pós-teste. Durante o pré-teste, serão administrados um questionário de conhecimento em
                         problemas lógicos, um questionário de autorrelato de disposição ao fluxo e um questionário de
@@ -121,10 +120,16 @@
         <md-card layout="column" layout-align="center center" flex="auto" width="50%">
             <md-card-title layout="column">
                 <h2>Etapa I - Questionário Inicial</h2>
-                <p>Por favor, responda às seguintes questões com relação à sua experiência na atividade "resolução de problemas lógicos". Estas questões estão relacionadas com os pensamentos e sensações que você pode experienciar durante a participação numa atividade desse tipo. </p>
-                <p> Você pode experienciar estas características em alguns momentos, a todo momento ou em nenhum momento. Não há respostas corretas ou erradas. </p>
-                <p> Pense sobre quão frequentemente você experiencia cada característica durante sua atividade e então marque o número que melhor representa sua experiência.</p>
-                <p>Quando participa em: "resolução de problemas lógicos" </p>
+                <p>
+                    Por favor, responda às seguintes questões com relação à sua experiência 
+                    na atividade "resolução de problemas lógicos". Estas questões estão 
+                    relacionadas com os pensamentos e sensações que você pode experienciar 
+                    durante a participação numa atividade desse tipo. Você pode experienciar 
+                    estas características em alguns momentos, a todo momento ou em nenhum momento. 
+                    Não há respostas corretas ou erradas. Pense sobre quão frequentemente você 
+                    experiencia cada característica durante sua atividade e então marque o 
+                    número que melhor representa sua experiência.
+                </p>
             </md-card-title>
             <md-card-content>
                 <form>
@@ -173,66 +178,3 @@
         </md-card>
     </div>
 </div>
-=======
-angular.module('tutor').controller("PosttestCtrl", function($scope, $location, User) {
-
-    $scope.questions = [
-        "Se sentiu tenso?",
-        "Se sentiu nervoso?",
-        "Se sentiu ansioso?",
-        "Se sentiu deprimido?",
-        "Se sentiu com incerteza?",
-        "Se sentiu agitado?",
-        "Se sentiu calmo?",
-        "Se sentiu auto-consciente?",
-        "Se sentiu quieto?",
-        "Se sentiu despreocupado?",
-        "Se sentiu decepcionado?",
-        "Se sentiu frustrado?",
-        "Se sentiu triste?",
-        "Se sentiu contente?",
-        "Se sentiu entusiasmado?",
-        "Se sentiu feliz?",
-        "Se sentiu equilibrado?",
-    ];
-    $scope.answers = [];
-
-    $scope.processAnswers = function() {
-
-        if ($scope.answers.length < 17) {
-            $scope.msg = "Por favor, responda todas as perguntas!"
-        } else {
-
-          
-
-            var ans = $scope.answers;
-            console.log(ans);
-
-            //invert positive answers
-            // ans[0] = 5 - ans[0];
-            // ans[1] = 5 - ans[1];
-            // ans[4] = 5 - ans[4];
-            // ans[7] = 5 - ans[7];
-            // ans[9] = 5 - ans[9];
-            // ans[10] = 5 - ans[10];
-            // ans[14] = 5 - ans[14];
-            // ans[15] = 5 - ans[15];
-            // ans[18] = 5 - ans[18];
-            // ans[19] = 5 - ans[19];
-
-            var sum = ans.reduce(add, 0);
-
-            function add(a, b) {
-                return parseInt(a) + parseInt(b);
-            }
-
-            User.setPosttestPoints(sum);
-            User.setPost(ans);
-
-            $location.path("/flow");
-
-        };
-    }
-
-});
->>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088

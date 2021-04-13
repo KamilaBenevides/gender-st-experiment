@@ -312,11 +312,8 @@ angular.module('tutor').controller("HomeCtrl", function($scope, $location, $mdDi
             playAnimation("green");
 
             //badge level 5
-<<<<<<< HEAD
-            if (totalPoints == 5 && levelFiveFlag) {
-=======
+
             if (totalPoints == 50 && levelFiveFlag) {
->>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
                 levelFiveFlag = false;
 
                 $mdDialog.show({
@@ -334,11 +331,8 @@ angular.module('tutor').controller("HomeCtrl", function($scope, $location, $mdDi
                 }, 2000);
 
 
-<<<<<<< HEAD
-            } else if (totalPoints == 10 && levelTenFlag) {
-=======
+
             } else if (totalPoints == 100 && levelTenFlag) {
->>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
                 levelTenFlag = false;
                 $mdDialog.show({
                     controller: 'Badge10Ctrl',

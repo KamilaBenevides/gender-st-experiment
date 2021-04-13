@@ -178,11 +178,9 @@ tutorServices.service("User", function($http) {
 
     this.save = function() {
         $http({
-<<<<<<< HEAD
             url: "https://weblab.nees.com.br/kelly/save-response",
-=======
+
             url: "https://weblab.nees.com.br/kamila/save-response",
->>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
             dataType: "json",
             method: "POST",
             headers: {
