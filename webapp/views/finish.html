@@ -1,9 +1,19 @@
-<div layout="column" layout-align="center center">
-    <div layout-margin>
-        <span>Contribua ainda mais com este estudo compartilhando-o com seus amigos pelo seguinte link:</span>
-        <a href="www.google.com">Estudo sobre motivação</a>
-        <div layout="column" layout-align="center center">
-            <h2> Obrigado!</h2>
-        </div>
-    </div>
-</div>
+angular.module('tutor').controller("FinishCtrl", function($scope, User) {
+
+    $scope.populationAnxiety = 40.1 * 100 / 80;
+    $scope.userAnxiety = User.getAnxiety() * 100 / 80;
+
+    $scope.share = function() {
+        FB.ui({
+            method: 'share',
+            display: 'popup',
+            href: 'http://ansiedade.tk/',
+            title: 'Está Ansioso(a)?',
+            description: 'Participe deste estudo sobre motivação e descubra!',
+            picture: 'https://pixabay.com/static/uploads/photo/2016/02/07/14/51/hatena-1184896_960_720.png',
+            layout: 'button'
+        }, function (response) { });
+      
+    };
+    
+});

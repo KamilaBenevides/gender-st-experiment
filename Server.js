@@ -20,7 +20,8 @@ app.post('/save-response', function(req, res, next){
   var respId = uuid.v1()
 
   //data to be saved (participant's response)
-  var row = [respId, req.body.startTime, req.body.endTime, req.body.testType, req.body.pretestPoints, req.body.activityPoints, req.body.posttestPoints, req.body.pre, req.body.post, req.body.flowPoints,req.body.flow, req.body.gender, req.body.age, req.body.ethnicity, req.body.sexualOrientation, req.body.civilState, req.body.city, req.body.email, req.body.whatsapp].join(";")+"\n"
+  var row = [respId, req.body.startTime, req.body.endTime, req.body.testType, req.body.pretestPoints, req.body.pretest2Points, req.body.activityPoints, req.body.posttestPoints, req.body.pre, req.body.pre2, req.body.post, req.body.flowPoints,req.body.flow, req.body.gender, req.body.age, req.body.ethnicity, req.body.sexualOrientation, req.body.civilState, req.body.city, req.body.universityEducation , req.body.institucion, req.body.educationLevel ,req.body.conclusion , req.body.email, req.body.whatsapp].join(";")+"\n"
+
 
   fs.stat('responses.csv', function (err, stat) {
       if (err == null) {
@@ -33,7 +34,10 @@ app.post('/save-response', function(req, res, next){
       else {
           //write the headers and newline
           console.log('First answer, adding headers');
-          var headers= ["responseId", "startTime","endTime","testType","motivationPre","activityPoints","motivationPost","motivationRawPre","motivationRawPost", "flowRawPoints", "flow", "gender","age", "ethnicity", "sexualOrientation", "civilState", "city", "email","whatsapp"].join(";") + "\n" + row
+
+        //var headers= ["responseId", "startTime","endTime","testType","dejectionPre","activityPoints","dejectionPost","dejectionRawPre","dejectionRawPost", "flowRawPoints", "flow", "gender","age", "ethnicity", "sexualOrientation", "civilState", "city", "email","whatsapp"].join(";") + "\n" + row
+          var headers= ["responseId", "startTime","endTime","testType","pre", "pre2","activityPoints","dejectionPost","dejectionRawPre","dejectionRawPre2","dejectionRawPost", "flowRawPoints", "flow", "gender","age", "ethnicity", "sexualOrientation", "civilState", "city", "universityEducation","institucion","educationLevel","conclusion", "email","whatsapp"].join(";") + "\n" + row
+
 
           fs.writeFile('responses.csv', headers, function (err) {
               if (err) throw err;
@@ -46,5 +50,6 @@ app.post('/save-response', function(req, res, next){
 
 });
 
-app.listen(8080, 'localhost');
+app.listen(8082, 'localhost');
 console.log("This project is listening on port 8080");
+

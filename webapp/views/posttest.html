@@ -2,21 +2,17 @@
     <div layout="row" layout-align="center center" >
         <md-card layout="column" layout-align="center center" flex="auto" width="50%">
             <md-toolbar layout="row" layout-align="center center" layout-padding class="md-primary md-hue-2">
-                <label>Etapa III - Questionário Pós-teste</label>
+                <label>Etapa IV - Questionário Pós-teste</label>
             </md-toolbar>
         </md-card>
     </div>
     <div layout="row" layout-align="center center" class="bg">
         <md-card layout="column" layout-align="center center" flex="auto" width="50%">
             <md-card-content layout="column" layout-align="left canter" flex="auto">
-                <p>1. Há 36 afirmações neste questionário. Por favor, pense sobre cada sentença em relação a cada material didático que você acabou de estudar e
-                    indique o quão verdadeira é a sentença. <br> Dê a resposta que verdadeiramente se aplica a você, e não aquela que você gostaria que fosse verdadeira,
-                    ou aquilo que você pensa que outros querem ouvir. </p>
+                <p>
+                    Descreva como você se sentiu ao realizar a atividade que acabou de finalizar.
+                </p>
                 
-                <p>2. Pense em cada afirmação isoladamente e indique quão verdadeira ela é. Não se deixe influenciar por suas respostas a outras afirmações. </p>
-                
-                <p>3. Registre suas respostas na folha fornecida e siga as instruções adicionais que podem ser fornecidas em relação à folha de resposta que está
-                    sendo usada nesta pesquisa.</p>
             </md-card-content>
             <md-card-content>
                
@@ -24,7 +20,7 @@
                     <div ng-repeat="q in questions">
                         <h3>{{q}}</h3>
                         <div layout="row">
-                            <p>Discordo totalmente </p>
+                            <p>Nada</p>
                             <md-radio-group ng-model="answers[$index]" layout="row" class="md-primary">
                                 <label>1</label>
                                 <md-radio-button value="1" aria-label="option 1"></md-radio-button>
@@ -36,13 +32,18 @@
                                 <md-radio-button value="4" aria-label="option 4"></md-radio-button>
                                 <label>5</label>
                                 <md-radio-button value="5" aria-label="option 5"></md-radio-button>
+                                <label>6</label>
+                                <md-radio-button value="6" aria-label="option 6"></md-radio-button>
+                                <label>7</label>
+                                <md-radio-button value="7" aria-label="option 7"></md-radio-button>
                             </md-radio-group>
-                            <p>Concordo totalmente</p>
+                            <p>Muito</p>
                         </div>
                         </p>
                         </p>
                         <md-divider></md-divider>
                     </div>
+
                     <md-button ng-click="processAnswers()" type="submit" class="md-raised md-primary">Concluir!</md-button>
                     <span>{{msg}}</span>
 
