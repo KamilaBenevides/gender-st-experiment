@@ -258,19 +258,19 @@ angular.module('tutor').controller("HomeCtrl", function($scope, $location, $mdDi
         //updates ranking
         users = [{
             name: "Alan",
-            points: 19,
+            points: 79, //19,
             avatar: "assets/" + configService.getTheme() + "/images/ranking1.png"
         }, {
             name: "Valentine",
-            points: 15,
+            points: 75, //15,
             avatar: "assets/" + configService.getTheme() + "/images/ranking2.png"
         }, {
             name: "Francis",
-            points: 13,
+            points: 63, //13,
             avatar: "assets/" + configService.getTheme() + "/images/ranking3.png"
         }, {
             name: "Danni",
-            points: 7,
+            points: 27, //7,
             avatar: "assets/" + configService.getTheme() + "/images/ranking4.png"
         }, {
             name: "Gil",
