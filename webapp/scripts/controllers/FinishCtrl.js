@@ -8,9 +8,9 @@ angular.module('tutor').controller("FinishCtrl", function($scope, User) {
             method: 'share',
             display: 'popup',
 
-            href: 'http://ansiedade.tk/',
-            title: 'Está Ansioso(a)?',
-            description: 'Participe deste estudo sobre motivação e descubra!',
+            href: 'http://dejection.tk/',
+            title: 'Está Desanimado(a)?',
+            description: 'Participe deste estudo sobre Desânimo e descubra!',
             picture: 'https://pixabay.com/static/uploads/photo/2016/02/07/14/51/hatena-1184896_960_720.png',
             layout: 'button'
         }, function (response) { });
