@@ -8,8 +8,8 @@ angular.module('tutor').controller("FinishCtrl", function($scope, User) {
             method: 'share',
             display: 'popup',
 
-            href: 'http://dejection.tk/',
-            title: 'Está Desanimado(a)?',
+            href: 'https://weblab.nees.com.br/kamila/',
+            title: 'Estudo sobre Desânimo',
             description: 'Participe deste estudo sobre Desânimo e descubra!',
             picture: 'https://pixabay.com/static/uploads/photo/2016/02/07/14/51/hatena-1184896_960_720.png',
             layout: 'button'
