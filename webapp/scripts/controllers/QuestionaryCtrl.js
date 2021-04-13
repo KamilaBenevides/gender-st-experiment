@@ -48,7 +48,7 @@ angular
       User.setCity($scope.city);
       User.setEmail($scope.email);
       User.setWhatsapp($scope.whatsapp);
-
+      User.setSexualOrientation($scope.sexualOrientation);
       User.setUniversityEducation($scope.universityEducation);
       User.setInstitucion($scope.institucion);
       User.setEducationLevel($scope.educationLevel);
