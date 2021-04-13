@@ -11,12 +11,19 @@ angular
         "Estava muito claro para mim como eu estava me saindo na atividade",
         "Não estava preocupado com o que os outros podiam estar pensando de mim",
         "Minhas habilidades combinavam com o desafio da atividade que estava fazendo",
+<<<<<<< HEAD
         "As coisas pareciam estar acontecendo automaticamente",
+=======
+>>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
         "A forma como o tempo passou parecia ser diferente do normal",
         "Eu sabia o que queria alcançar",
         "Tive uma sensação de total controle sobre o que estava fazendo",
         "A experiência me deixou com uma ótima sensação",
+<<<<<<< HEAD
         "Estava completamente focado na tarefa em questão",
+=======
+        "Estava completamente focado na tarefa em questão"
+>>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
       ];
       $scope.answers = [];
 
@@ -25,7 +32,13 @@ angular
       $scope.processAnswers = function () {
         //console.log($scope.answers);
         //  validation
+<<<<<<< HEAD
         if ($scope.answers.lenght < 8) {
+=======
+
+        if ($scope.answers.length < 8) {
+
+>>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
           $scope.msg = "Por favor, responda todas as perguntas!";
         } else {
           function add(a, b) {
@@ -55,6 +68,11 @@ angular
           User.setFlowPoints(sum);
           User.setFlow(ans);
           User.setEndTime(time);
+<<<<<<< HEAD
+=======
+          // User.save();
+
+>>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
           console.log(User.getResponse());
           $location.path("/questionary");
         }

@@ -49,13 +49,81 @@
             <md-input-container flex-gt-sm>
                 <label ng-required="true">Gênero</label>
                 <md-select ng-required="true" ng-model="gender">
+<<<<<<< HEAD
                     <md-option ng-repeat="g in ['Homem','Mulher','Não binário', 'Outro', 'Prefiro não Responder']">
+=======
+                    <md-option ng-repeat="g in ['Masculino','Feminino', 'Cisgênero','Transgênero', 'Não-binário','Prefiro não Responder']">
+>>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
                         {{g}}
                     </md-option>
                 </md-select>
             </md-input-container>
 
             <md-input-container class="block" flex-gt-sm>
+                <label>Estado econômico</label>
+                <md-select ng-required="true" ng-model="economicState">
+                    <md-option
+                    ng-repeat="g in ['Classe baixa','Classe média baixa', 'Classe média', ' Classe média alta', 'Classe alta']   ">
+                    {{g}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container class="block" flex-gt-sm>
+            <label>Cidade</label>
+            <input type="text" name="city" ng-required="true" ng-model="city">
+        </md-input-container>
+
+    </div>
+    
+        <md-card-content layout="column">
+            <h5>Cisgênero: é a pessoa que se identifica com o sexo biológico designado no momento de seu
+                nascimento. </h5>
+
+            <h5>Transgênero: é quem se identifica com um gênero diferente daquele atribuído no nascimento. </h5>
+            <h5> Não-binário: é alguém que não se identifica completamente com o “gênero de nascença” nem com
+                outro gênero.</h5>
+        </md-card-content>
+        <div layout="row">
+            <md-input-container class="block" flex-gt-sm>
+<<<<<<< HEAD
+                <label>Cursa nível superior?</label>
+                <md-select ng-required="true" ng-model="universityEducation">
+                    <md-option ng-repeat="g in ['Sim','Não']">
+=======
+                <label>Orientação sexual</label>
+                <md-select ng-required="true" ng-model="sexualOrientation">
+                    <md-option ng-repeat="g in ['Homossexual', 'Heterossexual', 'Pansexual', 'Bissexual', 'Assexual', 'Prefiro não Responder']   ">
+>>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
+                        {{g}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="block" flex-gt-sm>
+<<<<<<< HEAD
+                <label>Instituição de ensino</label>
+                <input type="text" name="institucion" ng-required="true" ng-model="institucion">
+            </md-input-container>
+
+
+            <md-input-container class="block" flex-gt-sm>
+                <label>Nível de escolaridade</label>
+                <md-select ng-required="true" ng-model="educationLevel">
+                    <md-option ng-repeat="g in ['Graduação','Mestrado', 'Doutorado', 'Outros']">
+                        {{g}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            
+            <md-input-container class="block" flex-gt-sm>
+                <label>Conclusão prevista</label>
+                <input type="number" name="conclusion" ng-required="true" ng-model="conclusion">
+            </md-input-container>
+
+        </div>
+
+=======
                 <label>Estado econômico</label>
                 <md-select ng-required="true" ng-model="economicState">
                     <md-option
@@ -112,6 +180,7 @@
 
         </div>
 
+>>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
         <div layout="column">
             <md-card layout="row" layout-align="center left" flex="auto" width="80%"></md-card>
             Caso você queira saber mais informação sobre esta pesquisa ou deseja contribuir mais com ela, por favor,

@@ -59,10 +59,12 @@ tutorServices.service("User", function($http) {
         educationLevel: "",
         conclusion: "",
         pretestPoints: 0,
+        pretest2Points: 0,
         activityPoints: 0,
         posttestPoints: 0,
         flowPoints: 0,
         pre: [],
+        pre2: [],
         post: [],
         flow: [],
     };
@@ -123,6 +125,10 @@ tutorServices.service("User", function($http) {
         resp.pretestPoints = value;
     };
 
+    this.setPretest2Points = function(value) {
+        resp.pretest2Points = value;
+    };
+
     this.setPosttestPoints = function(value) {
         resp.posttestPoints = value;
     };
@@ -144,6 +150,10 @@ tutorServices.service("User", function($http) {
 
     this.setPre = function(value) {
         resp.pre = value;
+    };
+
+    this.setPre2 = function(value) {
+        resp.pre2 = value;
     };
 
     this.setPost = function(value) {
@@ -168,7 +178,11 @@ tutorServices.service("User", function($http) {
 
     this.save = function() {
         $http({
+<<<<<<< HEAD
             url: "https://weblab.nees.com.br/kelly/save-response",
+=======
+            url: "https://weblab.nees.com.br/kamila/save-response",
+>>>>>>> 5cb66d9ded358e6bdd58a20d30f270bcc00af088
             dataType: "json",
             method: "POST",
             headers: {
