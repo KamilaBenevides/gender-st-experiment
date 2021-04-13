@@ -6,6 +6,7 @@ angular.module('tutor').controller("PretestCtrl", function($scope, $window, $loc
 
     $scope.questions = [
     "Minhas habilidades combinam com o desafio que estou experimentando",
+
     "Realizo a atividade automaticamente sem pensar muito", 
     "Sei o que quero alcançar", 
     "É muito claro para mim como estou me saindo na atividade",
@@ -15,6 +16,7 @@ angular.module('tutor').controller("PretestCtrl", function($scope, $window, $loc
     "A forma como o tempo passa parece ser diferente da normal",
     "A experiência é extremamente recompensadora",
     ];
+
     $scope.answers = [];
 
     $scope.setTime = function() {
@@ -25,7 +27,9 @@ angular.module('tutor').controller("PretestCtrl", function($scope, $window, $loc
     $scope.processAnswers = function() {
     
         //  validation
+
         if ($scope.answers.length < 9) {
+
             $scope.msg = "Por favor, responda todas as perguntas!"
         } else {
             function add(a, b) {

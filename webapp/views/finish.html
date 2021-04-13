@@ -1,26 +1,19 @@
-<!-- <div layout="column" flex="100" layout-align="center center">
-    <md-card flex="40">
-        <md-card-content>
-            <h1>Resultado:</h1>
-            <div layout="row" layout-align="center center" layout-margin>
-                <div layout="column" layout-align="center center">
-                    <label><b>Meu Nível de Motivação</b></label>
-                    <canvas-gauge width="350" under-color="#EFEFEF" over-color="#FF4500" value="userAnxiety" mask="(@)" style="color: gray"></canvas-gauge>
-                </div>
-                <div layout="column" layout-align="center center">
-                    <label><b>Outros Usuários</b></label>
-                    <canvas-gauge width="350" under-color="#EFEFEF" over-color="#00D700" value="populationAnxiety" mask="(@)" style="color: gray"></canvas-gauge>
-                </div>
-            </div>
-        </md-card-content>
-    </md-card> 
-    <div> -->
+angular.module('tutor').controller("FinishCtrl", function($scope, User) {
+
+    $scope.populationAnxiety = 40.1 * 100 / 80;
+    $scope.userAnxiety = User.getAnxiety() * 100 / 80;
+
+    $scope.share = function() {
+        FB.ui({
+            method: 'share',
+            display: 'popup',
+            href: 'http://ansiedade.tk/',
+            title: 'Está Ansioso(a)?',
+            description: 'Participe deste estudo sobre motivação e descubra!',
+            picture: 'https://pixabay.com/static/uploads/photo/2016/02/07/14/51/hatena-1184896_960_720.png',
+            layout: 'button'
+        }, function (response) { });
+      
+    };
     
-    <div layout-margin>
-        <!-- <span>Contribua ainda mais com este estudo compartilhando-o no Facebook:</span> -->
-        <div layout="column" layout-align="center center">
-            <h2> Obrigado!</h2>
-            <span>Contribua compartilhando esse link com seus amigos:</span>
-        </div>
-    </div>
-</div>
+});

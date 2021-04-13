@@ -59,3 +59,4 @@ angular.module('tutor').controller("QuestionaryCtrl", function ($scope, $locatio
         /** $location.path("/finish"); */
       };
     });
+

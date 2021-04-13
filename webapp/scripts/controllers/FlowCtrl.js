@@ -24,7 +24,9 @@ angular
       $scope.processAnswers = function () {
         //console.log($scope.answers);
         //  validation
+
         if ($scope.answers.length < 8) {
+
           $scope.msg = "Por favor, responda todas as perguntas!";
         } else {
           function add(a, b) {
