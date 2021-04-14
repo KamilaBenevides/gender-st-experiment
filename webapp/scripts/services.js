@@ -46,7 +46,6 @@ tutorServices.service("User", function($http) {
         name: "",
         gender: "",
         age: "",
-        email:"",
         testType: "",
         ethnicity: "",
         sexualOrientation: "",
@@ -94,9 +93,9 @@ tutorServices.service("User", function($http) {
         resp.age = value;
     };
 
-    this.setEmail = function(value) {
-        resp.email = value;
-    }
+    // this.setEmail = function(value) {
+    //     resp.email = value;
+    // }
 
     this.setEthnicity = function(value) {
         resp.ethnicity = value;
