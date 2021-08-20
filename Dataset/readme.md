@@ -1,6 +1,9 @@
 ## Detalhes do Dataset
 
-Tema do estudo: O estereótipo de gênero afeta o fluxo de experiência, desânimo e desempenho dos alunos em sistemas de tutoria gamificados para lógica?
+##### Tema do estudo: O estereótipo de gênero afeta o fluxo de experiência, desânimo e desempenho dos alunos em sistemas de tutoria gamificados para lógica?
+
+De acordo com a Teoria do foco regulatório [Higgins 1998], cada indivíduo assume uma forma de se motivar na busca de alguma meta. Essa motivação pode ser de duas formas: autorregulação com foco em promoção, onde o indivíduo busca prazer, ganho entre outros aspectos e autorregulação com foco em prevenção, onde o indivíduo busca fugir da dor, da perda, e necessidade de segurança. 
+A ameaça do estereótipo leva a expectativas de desempenho reduzidas (cf. Stangor et al., 1998) e, portanto, a uma experiência de desânimo nos participantes quando um foco de promoção é ativado em uma situação de teste.
 
 -   **responseId** - identificação do participante
     
@@ -13,9 +16,9 @@ Tema do estudo: O estereótipo de gênero afeta o fluxo de experiência, desâni
     
 -   **dfs** - Média aritmética dos itens do questionário de fluxo.
     
--   **dfsItens** - cada célula contém o conjunto das respostas do participante do questionário de dfs.
+-   **dfsRaw** - cada célula contém o conjunto das respostas do participante do questionário de dfs.
     
--   **dfs01 … dfs09** - essas colunas são os itens marcados pelo participante, são os mesmo itens do dfsRaw, porém aqui, separado por colunas.
+-   **dfsRaw01 … dfsRaw09** - essas colunas são os itens marcados pelo participante, são os mesmo itens do dfsRaw, porém aqui, separado por colunas.
     
 -   **dejectionPre2** - cada célula contém o conjunto das respostas do participante do questionário de desânimo
     
@@ -27,11 +30,11 @@ Tema do estudo: O estereótipo de gênero afeta o fluxo de experiência, desâni
 -   **dejectionPost** - cada célula contém o conjunto das respostas do participante do pós teste de desânimo, são eles:
 	* tense, nervous, anxious, depressed, uncertain, agitated, calm, self_conscious, quiet, unconcerned, disappointed, frustrated, sad, contented, enthusiastic, happy, balanced
     
--   **promotionPos** - promotion.pos = ( dejection - cheerfulness ) /2
+-   **promotionPos** - promotion.pos = ( dejection + [8 - cheerfulness] ) /2
 	 -   **dejection** = ( disappointed + frustrated + sad ) / 3
 	   * **cheerfulness** = ( contented + enthusiastic + light-hearted + happy + balanced ) / 5
   
--   **prevention.pos** = ( agitation - quiescence ) / 2
+-   **prevention.pos** = ( agitation + [8 - quiescence] ) / 2
     
 	* **agitation** = ( tense + nervous + anxious + depressed + uncertain + agitated ) / 6
 	* **quiescence** - ( calm + self_conscious + quiet + unconcerned ) / 4
@@ -46,13 +49,20 @@ Tema do estudo: O estereótipo de gênero afeta o fluxo de experiência, desâni
 * **gender** - gênero do participant.
 
 
-
 #### Formulação das hipóteses
-H1:0 - Desânimo não muda para participantes usando usando o sistema tutor estereotipado feminino;
-H1:1 - Desânimo muda para participantes usando usando o sistema tutor estereotipado feminino;
-H2:0 - Desânimo não muda para participantes usando o sistema tutor estereotipado masculino;
-H2:1 - Desânimo muda para participantes usando usando o sistema tutor estereotipado masculino;
-H3:0 - Performance é igual em todos os grupos;
-H3:1 - Performance muda sobre grupos diferentes;
-H4.0 - Nível de fluxo é igual para todos os grupos;
-H4.1 - Nível de fluxo é diferente em cada grupo.
+
+* H1:0 - Desânimo não muda para participantes usando usando o sistema tutor estereotipado feminino;
+
+* H1:1 - Desânimo muda para participantes usando usando o sistema tutor estereotipado feminino;
+
+* H2:0 - Desânimo não muda para participantes usando o sistema tutor estereotipado masculino;
+
+* H2:1 - Desânimo muda para participantes usando usando o sistema tutor estereotipado masculino;
+
+* H3:0 - Performance é igual em todos os grupos;
+
+* H3:1 - Performance muda sobre grupos diferentes;
+
+* H4.0 - Nível de fluxo é igual para todos os grupos;
+
+* H4.1 - Nível de fluxo é diferente em cada grupo.
