@@ -1,4 +1,5 @@
 
+
 ## H1: Experiência de fluxo não muda para participantes em diferentes condições
 
 Resultado: [H1-flow-condition](/Results/H1-flow-condition/results/ancova.md)
@@ -7,6 +8,17 @@ Sendo as condiçoes:
  - `stThreat`: em ameaçã de estereotipo
  - `inBoost`: em ambiente alinhado com o sexo do participante (in Boost)
  - `control`: em ambiente sem estereotipo
+
+
+## H2: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
+
+Resultado: [H2-flow-env_gender](/Results/H2-flow-env_gender/results/ancova.md)
+
+Sendo os ambientes (`stType`): 
+ - `stMale`: ambiente estereotipado masculino
+ - `stFemale`: ambiente estereotipado femenino
+ - `default`: ambiente sem estereotipo
+
 
 
 * H1:1 - Desânimo muda para participantes usando usando o sistema tutor estereotipado feminino;
