@@ -2,18 +2,18 @@
 ## Formulação das hipoteses 
 
 - H1: Experiência de fluxo não muda para participantes em diferentes condições
-- H2: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
+- \**H2: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
 - H3: Desânimo, alegria, agitação ou quietude não mudam para participantes em diferentes condições
-- H4: Desânimo, alegria, agitação e quietude não mudam para participantes em diferentes ambientes e com diferentes generos
+- \**H4: Desânimo, alegria, agitação e quietude não mudam para participantes em diferentes ambientes e com diferentes generos
 - H5: Motivação de prevenção não muda para participantes em diferentes condições
 - H6: Motivação de prevenção não muda para participantes em diferentes ambientes e com diferentes generos
 - H7: Motivação de promoção não mudam para participantes em diferentes condições
-- H8: Motivação de promoção não muda, para participantes em diferentes ambientes e com diferentes generos
+- \**H8: Motivação de promoção não muda, para participantes em diferentes ambientes e com diferentes generos
 
 - H9: Desempenho não muda para participantes em diferentes condições
-- H10: Desempenho não muda para participantes em diferentes ambientes e com diferentes generos
+- \**H10: Desempenho não muda para participantes em diferentes ambientes e com diferentes generos
 
-
+\**: Foi encontrada diferença significativa
 
 ## Resultado dos testes
 
@@ -27,7 +27,7 @@ Sendo as condiçoes (`Condition`):
  - `inBoost`: em ambiente alinhado com o sexo do participante (in Boost)
  - `control`: em ambiente sem estereotipo
 
-#### H2: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
+#### \**H2: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
 
 ANCOVA test for `fss~dfs+testType*gender`
  - Resultado: [H2-flow-env_gender](/Results/H2-flow-env_gender/results/ancova.md)
@@ -52,7 +52,7 @@ Sendo as condiçoes (`Condition`):
  - `inBoost`: em ambiente alinhado com o sexo do participante (in Boost)
  - `control`: em ambiente sem estereotipo
 
-#### H4: Desânimo, alegria, agitação e quietude não mudam para participantes em diferentes ambientes e com diferentes generos
+#### \**H4: Desânimo, alegria, agitação e quietude não mudam para participantes em diferentes ambientes e com diferentes generos
 
 ANOVA test for `dejection,cheerfulness,agitation,quiescence`\~`testType`\*`gender`
  - Resultado: [H4-emotions-env_gender](/Results/H4-emotions-env_gender/results/anova.md)
@@ -105,7 +105,7 @@ Sendo as condiçoes (`Condition`):
  - `control`: em ambiente sem estereotipo
 
 
-#### H8: Motivação de promoção não muda, para participantes em diferentes ambientes e com diferentes generos
+#### \**H8: Motivação de promoção não muda, para participantes em diferentes ambientes e com diferentes generos
 
 ANCOVA test for `promotion.pos~promotion.pre+testType*gender`
  - Resultado: [H8-promotion-env_gender](/Results/H8-promotion-env_gender/results/ancova.md)
@@ -132,7 +132,7 @@ Sendo as condiçoes (`Condition`):
  - `control`: em ambiente sem estereotipo
 
 
-#### H10: Desempenho não muda para participantes em diferentes ambientes e com diferentes generos
+#### \**H10: Desempenho não muda para participantes em diferentes ambientes e com diferentes generos
 
 ANOVA test for `points~testType*gender`
  - Resultado: [H10-points-env_gender](/Results/H10-points-env_gender/results/anova.md)
