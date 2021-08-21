@@ -1,6 +1,7 @@
 
+## Formulação de hipoteses e resultado dos testes
 
-## H1: Experiência de fluxo não muda para participantes em diferentes condições
+#### H1: Experiência de fluxo não muda para participantes em diferentes condições
 
 Resultado: [H1-flow-condition](/Results/H1-flow-condition/results/ancova.md)
 
@@ -10,7 +11,7 @@ Sendo as condiçoes:
  - `control`: em ambiente sem estereotipo
 
 
-## H2: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
+#### H2: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
 
 Resultado: [H2-flow-env_gender](/Results/H2-flow-env_gender/results/ancova.md)
 
