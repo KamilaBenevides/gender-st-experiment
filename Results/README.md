@@ -1,7 +1,7 @@
 
 ## H1: Experiência de fluxo não muda para participantes em diferentes condições
 
-[H1-flow-condition](H1-flow-condition/)
+Resultado: [H1-flow-condition](/Results/H1-flow-condition/results/ancova.md)
 
 Sendo as condiçoes: 
  - `stThreat`: em ameaçã de estereotipo
