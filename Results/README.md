@@ -1,5 +1,21 @@
 
-## Formulação de hipoteses e resultado dos testes
+## Formulação das hipoteses 
+
+- H1: Experiência de fluxo não muda para participantes em diferentes condições
+- H2: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
+- H3: Desânimo, alegria, agitação ou quietude não mudam para participantes em diferentes condições
+- H4: Desânimo, alegria, agitação e quietude não mudam para participantes em diferentes ambientes e com diferentes generos
+- H5: Motivação de prevenção não muda para participantes em diferentes condições
+- H6: Motivação de prevenção não muda para participantes em diferentes ambientes e com diferentes generos
+- H7: Motivação de promoção não mudam para participantes em diferentes condições
+- H8: Motivação de promoção não muda, para participantes em diferentes ambientes e com diferentes generos
+
+- H9: Desempenho não muda para participantes em diferentes condições
+- H10: Desempenho não muda para participantes em diferentes ambientes e com diferentes generos
+
+
+
+## Resultado dos testes
 
 #### H1: Experiência de fluxo não muda para participantes em diferentes condições
 
