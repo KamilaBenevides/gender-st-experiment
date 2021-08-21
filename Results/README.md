@@ -1,7 +1,13 @@
 
-## Formulação das hipóteses
+## H1: Experiência de fluxo não muda para participantes em diferentes condições
 
-* H1:0 - Desânimo não muda para participantes usando usando o sistema tutor estereotipado feminino;
+[H1-flow-condition](H1-flow-condition/)
+
+Sendo as condiçoes: 
+ - `stThreat`: em ameaçã de estereotipo
+ - `inBoost`: em ambiente alinhado com o sexo do participante (in Boost)
+ - `control`: em ambiente sem estereotipo
+
 
 * H1:1 - Desânimo muda para participantes usando usando o sistema tutor estereotipado feminino;
 
