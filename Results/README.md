@@ -3,7 +3,7 @@
 
 #### H1: Experiência de fluxo não muda para participantes em diferentes condições
 
-Resultado: [H1-flow-condition](/Results/H1-flow-condition/results/ancova.md)
+- Resultado: [H1-flow-condition](/Results/H1-flow-condition/results/ancova.md)
 
 Sendo as condiçoes: 
  - `stThreat`: em ameaçã de estereotipo
@@ -13,12 +13,35 @@ Sendo as condiçoes:
 
 #### H2: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
 
-Resultado: [H2-flow-env_gender](/Results/H2-flow-env_gender/results/ancova.md)
+- Resultado: [H2-flow-env_gender](/Results/H2-flow-env_gender/results/ancova.md)
 
 Sendo os ambientes (`stType`): 
  - `stMale`: ambiente estereotipado masculino
  - `stFemale`: ambiente estereotipado femenino
  - `default`: ambiente sem estereotipo
+
+
+#### H3: Desânimo, alegria, agitação e quietude não mudam para participantes em diferentes condições
+
+- Resultado: [H3-emotions-condition](/Results/H3-emotions-condition/results/anova.md)
+
+Sendo as condiçoes: 
+ - `stThreat`: em ameaçã de estereotipo
+ - `inBoost`: em ambiente alinhado com o sexo do participante (in Boost)
+ - `control`: em ambiente sem estereotipo
+
+
+#### H4: Experiência de fluxo não muda para participantes em diferentes ambientes e com diferentes generos
+
+- Resultado: [H4-emotions-env_gender](/Results/H4-emotions-env_gender/results/anova.md)
+
+Sendo os ambientes (`stType`): 
+ - `stMale`: ambiente estereotipado masculino
+ - `stFemale`: ambiente estereotipado femenino
+ - `default`: ambiente sem estereotipo
+
+
+
 
 
 
