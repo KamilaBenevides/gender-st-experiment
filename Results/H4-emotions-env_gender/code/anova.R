@@ -21,7 +21,7 @@
 #' fontsize: 10pt
 #' ---
 #' 
-## ----setup, include=FALSE----------------------------------------------------------------------------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------------------------------------------------------------------------
 ## Install and Load Packages
 if (!'remotes' %in% rownames(installed.packages())) install.packages('remotes')
 if (!"rshinystatistics" %in% rownames(installed.packages())) {
@@ -55,7 +55,7 @@ library(rshinystatistics)
 #' * Files related to the presented results: [../results/](../results/)
 #' 
 #' 
-## ---- include=FALSE----------------------------------------------------------------------------------------------------------------------------
+## ---- include=FALSE-----------------------------------------------------------------------------------------------------------------------------
 wid <- "responseId"
 
 between <- c("testType","gender")
@@ -73,13 +73,13 @@ sdat <- dat
 #' 
 #' ### Descriptive statistics of initial data
 #' 
-## ---- include=FALSE----------------------------------------------------------------------------------------------------------------------------
+## ---- include=FALSE-----------------------------------------------------------------------------------------------------------------------------
 (df <- get.descriptives(dat, dvs, between, include.global = T, symmetry.test = T))
 
 #' 
 
 #' 
-## ---- echo=FALSE-------------------------------------------------------------------------------------------------------------------------------
+## ---- echo=FALSE--------------------------------------------------------------------------------------------------------------------------------
 car::Boxplot(`dejection` ~ `testType`*`gender`, data = dat[["dejection"]], id = list(n = Inf))
 car::Boxplot(`cheerfulness` ~ `testType`*`gender`, data = dat[["cheerfulness"]], id = list(n = Inf))
 car::Boxplot(`agitation` ~ `testType`*`gender`, data = dat[["agitation"]], id = list(n = Inf))
@@ -93,28 +93,54 @@ car::Boxplot(`quiescence` ~ `testType`*`gender`, data = dat[["quiescence"]], id 
 #' #### Applying transformation for skewness data when normality is not achieved
 #' 
 #' 
+#'  Applying transformation in "dejection" to reduce skewness
+#' 
+## -----------------------------------------------------------------------------------------------------------------------------------------------
+density.plot.by.residual(rdat[["dejection"]],"dejection",between)
+rdat[["dejection"]][["dejection"]] <- log10(dat[["dejection"]][["dejection"]])
+density.plot.by.residual(rdat[["dejection"]],"dejection",between)
+
+#' 
+#' 
+#' 
+#' 
+#'  Applying transformation in "agitation" to reduce skewness
+#' 
+## -----------------------------------------------------------------------------------------------------------------------------------------------
+density.plot.by.residual(rdat[["agitation"]],"agitation",between)
+rdat[["agitation"]][["agitation"]] <- sqrt(dat[["agitation"]][["agitation"]])
+density.plot.by.residual(rdat[["agitation"]],"agitation",between)
+
 #' 
 #' 
 #' 
 #' 
 #' #### Dealing with outliers (performing treatment of outliers)
 #' 
-#' 
+## -----------------------------------------------------------------------------------------------------------------------------------------------
+rdat[["dejection"]] <- winzorize(rdat[["dejection"]],"dejection", c("testType","gender"))
+rdat[["cheerfulness"]] <- winzorize(rdat[["cheerfulness"]],"cheerfulness", c("testType","gender"))
+rdat[["agitation"]] <- winzorize(rdat[["agitation"]],"agitation", c("testType","gender"))
+rdat[["quiescence"]] <- winzorize(rdat[["quiescence"]],"quiescence", c("testType","gender"))
+
+
 #' 
 #' ### Assumption: Normality distribution of data
 #' 
 #' #### Removing data that affect normality (extreme values)
 #' 
-## ----------------------------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------------------------------
 non.normal <- list(
-
+"dejection" = c("d23aa670-9d47-11eb-9b7e-0daf340a71ab","09bbd000-9e39-11eb-9b7e-0daf340a71ab","eb0ea380-aeb9-11eb-8cbb-599e427a3fce","d79c21e0-b1db-11eb-b944-15c8c1c6ce71","8a1d24d0-b183-11eb-b944-15c8c1c6ce71","d7a07110-df61-11eb-bf23-972ef7bdc96c","18379910-9df4-11eb-9b7e-0daf340a71ab","4b9fd020-9e02-11eb-9b7e-0daf340a71ab","a9467110-a853-11eb-8cbb-599e427a3fce","e7bb7ec0-b057-11eb-b944-15c8c1c6ce71","3cbe7e50-b25a-11eb-b944-15c8c1c6ce71","108b6210-b649-11eb-ad27-3593da35795f","369d0020-df62-11eb-bf23-972ef7bdc96c","3ee27670-df62-11eb-bf23-972ef7bdc96c","9bf2ecf0-df62-11eb-bf23-972ef7bdc96c"),
+"cheerfulness" = c("d7a07110-df61-11eb-bf23-972ef7bdc96c"),
+"quiescence" = c("369d0020-df62-11eb-bf23-972ef7bdc96c","2145a1e0-df63-11eb-bf23-972ef7bdc96c","46f906c0-9e36-11eb-9b7e-0daf340a71ab")
 )
 sdat <- removeFromDataTable(rdat, non.normal, wid)
 
 #' 
 #' #### Result of normality test in the residual model
 #' 
-## ---- include=FALSE----------------------------------------------------------------------------------------------------------------------------
+## ---- include=FALSE-----------------------------------------------------------------------------------------------------------------------------
 (df <- normality.test.by.residual(sdat, dvs, between))
 
 #' 
@@ -124,7 +150,7 @@ sdat <- removeFromDataTable(rdat, non.normal, wid)
 #' 
 #' This is an optional validation and only valid for groups with number greater than 30 observations
 #' 
-## ---- include=FALSE----------------------------------------------------------------------------------------------------------------------------
+## ---- include=FALSE-----------------------------------------------------------------------------------------------------------------------------
 (df <- get.descriptives(sdat, dvs, between, include.global = F, normality.test = T))
 
 #' 
@@ -154,7 +180,7 @@ sdat <- removeFromDataTable(rdat, non.normal, wid)
 #' 
 #' ### Assumption: Homogeneity of data distribution
 #' 
-## ---- include=FALSE----------------------------------------------------------------------------------------------------------------------------
+## ---- include=FALSE-----------------------------------------------------------------------------------------------------------------------------
 (df <- homogeneity.test(sdat, dvs, between))
 
 #' 
@@ -162,7 +188,7 @@ sdat <- removeFromDataTable(rdat, non.normal, wid)
 #' 
 #' ## Saving the Data with Normal Distribution Used for Performing ANOVA test 
 #' 
-## ----------------------------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------------------------------
 ndat <- sdat[[1]]
 for (dv in names(sdat)[-1]) ndat <- merge(ndat, sdat[[dv]])
 write.csv(ndat, paste0("../data/table-with-normal-distribution.csv"))
@@ -170,13 +196,13 @@ write.csv(ndat, paste0("../data/table-with-normal-distribution.csv"))
 #' 
 #' Descriptive statistics of data with normal distribution
 #' 
-## ---- include=FALSE----------------------------------------------------------------------------------------------------------------------------
+## ---- include=FALSE-----------------------------------------------------------------------------------------------------------------------------
 (df <- get.descriptives(sdat, dvs, between))
 
 #' 
 
 #' 
-## ---- echo=FALSE-------------------------------------------------------------------------------------------------------------------------------
+## ---- echo=FALSE--------------------------------------------------------------------------------------------------------------------------------
 for (dv in dvs) {
   car::Boxplot(`dv` ~ `testType`*`gender`, data = sdat[[dv]] %>% cbind(dv=sdat[[dv]][[dv]]), id = list(n = Inf))  
 }
@@ -186,7 +212,7 @@ for (dv in dvs) {
 #' 
 #' ### ANOVA test
 #' 
-## ---- include=FALSE----------------------------------------------------------------------------------------------------------------------------
+## ---- include=FALSE-----------------------------------------------------------------------------------------------------------------------------
 aov <- anova.test(sdat, dvs, between, type=2, effect.size="ges")
 (adf <- get.anova.table(aov))
 
@@ -195,7 +221,7 @@ aov <- anova.test(sdat, dvs, between, type=2, effect.size="ges")
 #' 
 #' ### Pairwise comparison
 #' 
-## ---- include=FALSE----------------------------------------------------------------------------------------------------------------------------
+## ---- include=FALSE-----------------------------------------------------------------------------------------------------------------------------
 pwc <- anova.pwc(sdat, dvs, between, p.adjust.method = "bonferroni")
 (pdf <- get.anova.pwc.table(pwc, only.sig = F))
 
@@ -204,7 +230,7 @@ pwc <- anova.pwc(sdat, dvs, between, p.adjust.method = "bonferroni")
 #' 
 #' ### Descriptive Statistic of Estimated Marginal Means
 #' 
-## ---- include=FALSE----------------------------------------------------------------------------------------------------------------------------
+## ---- include=FALSE-----------------------------------------------------------------------------------------------------------------------------
 (emms <- get.anova.emmeans.with.ds(pwc, sdat, dvs, between, "common"))
 
 #' 
@@ -212,76 +238,76 @@ pwc <- anova.pwc(sdat, dvs, between, p.adjust.method = "bonferroni")
 #' 
 #' 
 #' ### Anova plots for the dependent variable "dejection"
-## ----------------------------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------------------------------
 plots <- twoWayAnovaPlots(sdat[["dejection"]], "dejection", between, aov[["dejection"]], pwc[["dejection"]], c("jitter"), font.label.size=14, step.increase=0.25)
 
 #' 
 #' 
 #' #### Plot of "dejection" based on "testType" (color: gender)
-## ---- fig.width=7, fig.height=7----------------------------------------------------------------------------------------------------------------
+## ---- fig.width=7, fig.height=7-----------------------------------------------------------------------------------------------------------------
 plots[["testType"]]
 
 #' 
 #' 
 #' #### Plot of "dejection" based on "gender" (color: testType)
-## ---- fig.width=7, fig.height=7----------------------------------------------------------------------------------------------------------------
+## ---- fig.width=7, fig.height=7-----------------------------------------------------------------------------------------------------------------
 plots[["gender"]]
 
 #' 
 #' 
 #' 
 #' ### Anova plots for the dependent variable "cheerfulness"
-## ----------------------------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------------------------------
 plots <- twoWayAnovaPlots(sdat[["cheerfulness"]], "cheerfulness", between, aov[["cheerfulness"]], pwc[["cheerfulness"]], c("jitter"), font.label.size=14, step.increase=0.25)
 
 #' 
 #' 
 #' #### Plot of "cheerfulness" based on "testType" (color: gender)
-## ---- fig.width=7, fig.height=7----------------------------------------------------------------------------------------------------------------
+## ---- fig.width=7, fig.height=7-----------------------------------------------------------------------------------------------------------------
 plots[["testType"]]
 
 #' 
 #' 
 #' #### Plot of "cheerfulness" based on "gender" (color: testType)
-## ---- fig.width=7, fig.height=7----------------------------------------------------------------------------------------------------------------
+## ---- fig.width=7, fig.height=7-----------------------------------------------------------------------------------------------------------------
 plots[["gender"]]
 
 #' 
 #' 
 #' 
 #' ### Anova plots for the dependent variable "agitation"
-## ----------------------------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------------------------------
 plots <- twoWayAnovaPlots(sdat[["agitation"]], "agitation", between, aov[["agitation"]], pwc[["agitation"]], c("jitter"), font.label.size=14, step.increase=0.25)
 
 #' 
 #' 
 #' #### Plot of "agitation" based on "testType" (color: gender)
-## ---- fig.width=7, fig.height=7----------------------------------------------------------------------------------------------------------------
+## ---- fig.width=7, fig.height=7-----------------------------------------------------------------------------------------------------------------
 plots[["testType"]]
 
 #' 
 #' 
 #' #### Plot of "agitation" based on "gender" (color: testType)
-## ---- fig.width=7, fig.height=7----------------------------------------------------------------------------------------------------------------
+## ---- fig.width=7, fig.height=7-----------------------------------------------------------------------------------------------------------------
 plots[["gender"]]
 
 #' 
 #' 
 #' 
 #' ### Anova plots for the dependent variable "quiescence"
-## ----------------------------------------------------------------------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------------------------------------------------------------------------
 plots <- twoWayAnovaPlots(sdat[["quiescence"]], "quiescence", between, aov[["quiescence"]], pwc[["quiescence"]], c("jitter"), font.label.size=14, step.increase=0.25)
 
 #' 
 #' 
 #' #### Plot of "quiescence" based on "testType" (color: gender)
-## ---- fig.width=7, fig.height=7----------------------------------------------------------------------------------------------------------------
+## ---- fig.width=7, fig.height=7-----------------------------------------------------------------------------------------------------------------
 plots[["testType"]]
 
 #' 
 #' 
 #' #### Plot of "quiescence" based on "gender" (color: testType)
-## ---- fig.width=7, fig.height=7----------------------------------------------------------------------------------------------------------------
+## ---- fig.width=7, fig.height=7-----------------------------------------------------------------------------------------------------------------
 plots[["gender"]]
 
 #' 
@@ -289,14 +315,14 @@ plots[["gender"]]
 #' 
 #' ### Textual Report
 #' 
-#' ANOVA tests with independent between-subjects variables "testType" (stFemale, stMale, default) and "gender" (Masculino, Feminino) were performed to determine statistically significant difference on the dependent varibles "dejection", "cheerfulness", "agitation", "quiescence". For the dependent variable "dejection", there was statistically significant effects in the factor "gender" with F(1,101)=9.989, p=0.002 and ges=0.09 (effect size).
-#' For the dependent variable "cheerfulness", there was statistically significant effects in the factor "gender" with F(1,101)=6.367, p=0.013 and ges=0.059 (effect size).
+#' ANOVA tests with independent between-subjects variables "testType" (default, stFemale, stMale) and "gender" (Feminino, Masculino) were performed to determine statistically significant difference on the dependent varibles "dejection", "cheerfulness", "agitation", "quiescence". For the dependent variable "dejection", there was statistically significant effects in the factor "gender" with F(1,86)=6.402, p=0.013 and ges=0.069 (effect size).
+#' For the dependent variable "cheerfulness", there was statistically significant effects in the factor "gender" with F(1,100)=10.362, p=0.002 and ges=0.094 (effect size).
 #' For the dependent variable "agitation", there was not statistically significant effects.
-#' For the dependent variable "quiescence", there was statistically significant effects in the factor "gender" with F(1,101)=5.542, p=0.021 and ges=0.052 (effect size).
+#' For the dependent variable "quiescence", there was statistically significant effects in the factor "gender" with F(1,98)=6.34, p=0.013 and ges=0.061 (effect size).
 #' 
 #' 
 #' 
-#' Pairwise comparisons using the Estimated Marginal Means (EMMs) were computed to find statistically significant diferences among the groups defined by the independent variables, and with the p-values ajusted by the method "bonferroni". For the dependent variable "cheerfulness", the mean in the gender="Feminino" (adj M=2.867 and SD=1.685) was significantly different than the mean in the gender="Masculino" (adj M=1.708 and SD=1.004) with p-adj=0.007; the mean in the gender="Feminino" (adj M=3.367 and SD=1.614) was significantly different than the mean in the gender="Masculino" (adj M=4.554 and SD=1.356) with p-adj=0.01; the mean in the gender="Feminino" (adj M=3.911 and SD=1.543) was significantly different than the mean in the gender="Masculino" (adj M=4.9 and SD=1.098) with p-adj=0.047.
+#' Pairwise comparisons using the Estimated Marginal Means (EMMs) were computed to find statistically significant diferences among the groups defined by the independent variables, and with the p-values ajusted by the method "bonferroni". For the dependent variable "quiescence", the mean in the gender="Feminino" (adj M=3.278 and SD=1.381) was significantly different than the mean in the gender="Masculino" (adj M=4.584 and SD=1.256) with p-adj=0.002; the mean in the gender="Feminino" (adj M=3.948 and SD=1.39) was significantly different than the mean in the gender="Masculino" (adj M=4.936 and SD=1.026) with p-adj=0.028; the mean in the gender="Feminino" (adj M=4.199 and SD=1.581) was significantly different than the mean in the gender="Masculino" (adj M=5.214 and SD=0.963) with p-adj=0.028.
 #' 
 #' 
 #' 
