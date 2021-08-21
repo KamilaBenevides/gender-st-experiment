@@ -63,7 +63,7 @@ Sendo as condiçoes (`Condition`):
 
 #### H6: Motivação de prevenção não muda para participantes em diferentes ambientes e com diferentes generos
 
-ANCOVA test for `fss~dfs+testType*gender`
+ANCOVA test for `promotion.pos~promotion.pre+testType*gender`
  - Resultado: [H6-prevention-env_gender](/Results/H6-prevention-env_gender/results/ancova.md)
 
 Sendo os ambientes (`testType`): 
@@ -83,7 +83,25 @@ Sendo os generos (`gender`):
 
 #### H9: Desempenho não muda para participantes em diferentes condições
 
+ANOVA test for `points~Condition`
+ - Resultado: [H9-points-condition](/Results/H9-points-condition/results/anova.md)
+
+Sendo as condiçoes (`Condition`): 
+ - `stThreat`: em ameaçã de estereotipo
+ - `inBoost`: em ambiente alinhado com o sexo do participante (in Boost)
+ - `control`: em ambiente sem estereotipo
+
+
 #### H10: Desempenho não muda para participantes em diferentes ambientes e com diferentes generos
 
+ANOVA test for `points~testType*gender`
+ - Resultado: [H10-points-env_gender](/Results/H10-points-env_gender/results/anova.md)
 
+Sendo os ambientes (`testType`): 
+ - `stMale`: ambiente estereotipado masculino
+ - `stFemale`: ambiente estereotipado femenino
+ - `default`: ambiente sem estereotipo
 
+Sendo os generos (`gender`): 
+ - `Male`: homens
+ - `Female`: mulheres
