@@ -1,5 +1,5 @@
 metadata_version: 1
-name: 'ANCOVA for `promotion.pos`~`promotion.pre`+`Condition`'
+name: 'ANCOVA for `promotion.pos`~`promotion.pre`+`testType`*`gender`'
 description: '(@author = Geiser C. Challco, @email = geiser@alumni.usp.br). Shiny-Statistic is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.'
 authors:
 - name: 'Geiser C. Challco'
