@@ -45,7 +45,7 @@ Sendo os generos (`gender`):
 #### H3: Desânimo, alegria, agitação ou quietude não mudam para participantes em diferentes condições
 
 ANOVA test for `dejection,cheerfulness,agitation,quiescence`\~`Conditions`
- - Resultado: [H3-emotions-condition](/Results/H3-emotions-conditions/results/anova.md)
+ - Resultado: [H3-emotions-conditions](/Results/H3-emotions-conditions/results/anova.md)
 
 Sendo as condiçoes (`Condition`): 
  - `stThreat`: em ameaçã de estereotipo
