@@ -44,9 +44,27 @@ Sendo os generos (`gender`):
 
 #### H3: Desânimo, alegria, agitação ou quietude não mudam para participantes em diferentes condições
 
+ANOVA test for `dejection,cheerfulness,agitation,quiescence`\~`Conditions`
+ - Resultado: [H3-emotions-condition](/Results/H3-emotions-condition/results/anova.md)
 
+Sendo as condiçoes (`Condition`): 
+ - `stThreat`: em ameaçã de estereotipo
+ - `inBoost`: em ambiente alinhado com o sexo do participante (in Boost)
+ - `control`: em ambiente sem estereotipo
 
 #### H4: Desânimo, alegria, agitação e quietude não mudam para participantes em diferentes ambientes e com diferentes generos
+
+ANOVA test for `dejection,cheerfulness,agitation,quiescence`\~`testType`\*`gender`
+ - Resultado: [H4-emotions-env_gender](/Results/H4-emotions-env_gender/results/anova.md)
+
+Sendo os ambientes (`testType`): 
+ - `stMale`: ambiente estereotipado masculino
+ - `stFemale`: ambiente estereotipado femenino
+ - `default`: ambiente sem estereotipo
+
+Sendo os generos (`gender`): 
+ - `Male`: homens
+ - `Female`: mulheres
 
 
 
