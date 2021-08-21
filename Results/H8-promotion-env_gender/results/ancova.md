@@ -1,4 +1,4 @@
-ANCOVA test for `prevention.pos`\~`prevention.pre`+`testType`\*`gender`
+ANCOVA test for `promotion.pos`\~`promotion.pre`+`Condition`
 ================
 Geiser C. Challco <geiser@alumni.usp.br>
 
@@ -23,7 +23,7 @@ Geiser C. Challco <geiser@alumni.usp.br>
     -   [Descriptive Statistic of Estimated Marginal
         Means](#descriptive-statistic-of-estimated-marginal-means)
     -   [Ancova plots for the dependent variable
-        “prevention.pos”](#ancova-plots-for-the-dependent-variable-preventionpos)
+        “promotion.pos”](#ancova-plots-for-the-dependent-variable-promotionpos)
     -   [Textual Report](#textual-report)
 -   [Tips and References](#tips-and-references)
 
@@ -32,8 +32,8 @@ Geiser C. Challco <geiser@alumni.usp.br>
 -   R-script file: [../code/ancova.R](../code/ancova.R)
 -   Initial table file:
     [../data/initial-table.csv](../data/initial-table.csv)
--   Data for prevention.pos
-    [../data/table-for-prevention.pos.csv](../data/table-for-prevention.pos.csv)
+-   Data for promotion.pos
+    [../data/table-for-promotion.pos.csv](../data/table-for-promotion.pos.csv)
 -   Table without outliers and normal distribution of data:
     [../data/table-with-normal-distribution.csv](../data/table-with-normal-distribution.csv)
 -   Other data files: [../data/](../data/)
@@ -41,25 +41,40 @@ Geiser C. Challco <geiser@alumni.usp.br>
 
 ### Descriptive statistics of initial data
 
-| testType | gender    | variable       |   n |  mean | median |  min |  max |    sd |    se |    ci |   iqr | symmetry | skewness | kurtosis |
-|:---------|:----------|:---------------|----:|------:|-------:|-----:|-----:|------:|------:|------:|------:|:---------|---------:|---------:|
-| default  | Feminino  | prevention.pos |  15 | 3.347 |  2.790 | 1.00 | 5.63 | 1.611 | 0.416 | 0.892 | 2.880 | YES      |   -0.018 |   -1.723 |
-| default  | Masculino | prevention.pos |  28 | 3.080 |  2.830 | 1.46 | 6.50 | 1.152 | 0.218 | 0.447 | 1.402 | NO       |    0.904 |    0.669 |
-| stFemale | Feminino  | prevention.pos |  15 | 3.684 |  3.380 | 1.75 | 6.75 | 1.384 | 0.357 | 0.766 | 1.980 | NO       |    0.547 |   -0.726 |
-| stFemale | Masculino | prevention.pos |  15 | 3.091 |  2.830 | 1.46 | 5.04 | 1.345 | 0.347 | 0.745 | 2.490 | YES      |    0.074 |   -1.755 |
-| stMale   | Feminino  | prevention.pos |  14 | 3.504 |  3.435 | 1.08 | 5.67 | 1.481 | 0.396 | 0.855 | 2.170 | YES      |   -0.194 |   -1.342 |
-| stMale   | Masculino | prevention.pos |  20 | 2.818 |  2.665 | 1.42 | 5.17 | 0.936 | 0.209 | 0.438 | 1.242 | NO       |    0.595 |   -0.201 |
-| NA       | NA        | prevention.pos | 107 | 3.210 |  2.920 | 1.00 | 6.75 | 1.296 | 0.125 | 0.248 | 1.880 | YES      |    0.425 |   -0.610 |
+| Condition | variable      |   n |  mean | median |  min |  max |    sd |    se |    ci |  iqr | symmetry | skewness | kurtosis |
+|:----------|:--------------|----:|------:|-------:|-----:|-----:|------:|------:|------:|-----:|:---------|---------:|---------:|
+| control   | promotion.pos |  43 | 2.988 |   2.75 | 1.33 | 5.50 | 1.190 | 0.182 | 0.366 | 1.88 | YES      |    0.407 |   -0.922 |
+| inBoost   | promotion.pos |  35 | 2.813 |   2.50 | 1.25 | 6.25 | 1.239 | 0.209 | 0.425 | 1.50 | NO       |    1.151 |    0.673 |
+| inThreat  | promotion.pos |  29 | 3.122 |   3.04 | 1.25 | 5.67 | 0.959 | 0.178 | 0.365 | 1.13 | YES      |    0.468 |    0.152 |
+| NA        | promotion.pos | 107 | 2.967 |   2.92 | 1.25 | 6.25 | 1.145 | 0.111 | 0.219 | 1.71 | NO       |    0.682 |   -0.100 |
 
 ![](ancova_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-    ## [1] "9bf2ecf0-df62-11eb-bf23-972ef7bdc96c"
+    ## [1] "358e5340-9d4b-11eb-9b7e-0daf340a71ab"
+    ## [2] "1160f4b0-a439-11eb-8cbb-599e427a3fce"
+    ## [3] "d7092840-efb6-11eb-991d-7bf2f9a6c3b9"
 
 ## Checking of Assumptions
 
 ### Assumption: Symmetry and treatment of outliers
 
 #### Applying transformation for skewness data when normality is not achieved
+
+Applying transformation in “promotion.pos” to reduce skewness
+
+``` r
+density.plot.by.residual(rdat[["promotion.pos"]],"promotion.pos",between,c(),covar)
+```
+
+![](ancova_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+rdat[["promotion.pos"]][["promotion.pos"]] <- sqrt(dat[["promotion.pos"]][["promotion.pos"]])
+
+density.plot.by.residual(rdat[["promotion.pos"]],"promotion.pos",between,c(),covar)
+```
+
+![](ancova_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
 
 #### Dealing with outliers (performing treatment of outliers)
 
@@ -69,30 +84,27 @@ Geiser C. Challco <geiser@alumni.usp.br>
 
 ``` r
 non.normal <- list(
-
+"promotion.pos" = c("d23aa670-9d47-11eb-9b7e-0daf340a71ab","1160f4b0-a439-11eb-8cbb-599e427a3fce","670fa950-f6e7-11eb-991d-7bf2f9a6c3b9")
 )
 sdat <- removeFromDataTable(rdat, non.normal, wid)
 ```
 
 #### Result of normality test in the residual model
 
-|                | var            |   n | skewness | kurtosis | symmetry | statistic | method     |     p | p.signif | normality |
-|:---------------|:---------------|----:|---------:|---------:|:---------|----------:|:-----------|------:|:---------|:----------|
-| prevention.pos | prevention.pos | 107 |     0.25 |   -0.728 | YES      |     4.949 | D’Agostino | 0.084 | ns       | QQ        |
+|               | var           |   n | skewness | kurtosis | symmetry | statistic | method     |    p | p.signif | normality |
+|:--------------|:--------------|----:|---------:|---------:|:---------|----------:|:-----------|-----:|:---------|:----------|
+| promotion.pos | promotion.pos | 104 |    0.469 |    -0.14 | YES      |     4.081 | D’Agostino | 0.13 | ns       | QQ        |
 
 #### Result of normality test in each group
 
 This is an optional validation and only valid for groups with number
 greater than 30 observations
 
-| testType | gender    | variable       |   n |  mean | median |  min |  max |    sd |    se |    ci |   iqr | normality | method       | statistic |     p | p.signif |
-|:---------|:----------|:---------------|----:|------:|-------:|-----:|-----:|------:|------:|------:|------:|:----------|:-------------|----------:|------:|:---------|
-| default  | Feminino  | prevention.pos |  15 | 3.347 |  2.790 | 1.00 | 5.63 | 1.611 | 0.416 | 0.892 | 2.880 | YES       | Shapiro-Wilk |     0.891 | 0.070 | ns       |
-| default  | Masculino | prevention.pos |  28 | 3.080 |  2.830 | 1.46 | 6.50 | 1.152 | 0.218 | 0.447 | 1.402 | YES       | Shapiro-Wilk |     0.937 | 0.093 | ns       |
-| stFemale | Feminino  | prevention.pos |  15 | 3.684 |  3.380 | 1.75 | 6.75 | 1.384 | 0.357 | 0.766 | 1.980 | YES       | Shapiro-Wilk |     0.948 | 0.489 | ns       |
-| stFemale | Masculino | prevention.pos |  15 | 3.091 |  2.830 | 1.46 | 5.04 | 1.345 | 0.347 | 0.745 | 2.490 | YES       | Shapiro-Wilk |     0.888 | 0.063 | ns       |
-| stMale   | Feminino  | prevention.pos |  14 | 3.504 |  3.435 | 1.08 | 5.67 | 1.481 | 0.396 | 0.855 | 2.170 | YES       | Shapiro-Wilk |     0.953 | 0.613 | ns       |
-| stMale   | Masculino | prevention.pos |  20 | 2.818 |  2.665 | 1.42 | 5.17 | 0.936 | 0.209 | 0.438 | 1.242 | YES       | Shapiro-Wilk |     0.959 | 0.524 | ns       |
+| Condition | variable      |   n |  mean | median |   min |   max |    sd |    se |    ci |   iqr | normality | method       | statistic |     p | p.signif |
+|:----------|:--------------|----:|------:|-------:|------:|------:|------:|------:|------:|------:|:----------|:-------------|----------:|------:|:---------|
+| control   | promotion.pos |  43 | 1.695 |  1.658 | 1.153 | 2.345 | 0.345 | 0.053 | 0.106 | 0.556 | YES       | Shapiro-Wilk |     0.960 | 0.142 | ns       |
+| inBoost   | promotion.pos |  32 | 1.613 |  1.568 | 1.118 | 2.500 | 0.295 | 0.052 | 0.106 | 0.418 | YES       | Shapiro-Wilk |     0.936 | 0.058 | ns       |
+| inThreat  | promotion.pos |  29 | 1.746 |  1.744 | 1.118 | 2.381 | 0.273 | 0.051 | 0.104 | 0.324 | YES       | Shapiro-Wilk |     0.988 | 0.979 | ns       |
 
 **Observation**:
 
@@ -121,20 +133,20 @@ performed parametric tests with large samples as described as follows:
 ### Assumption: Linearity of dependent variables and covariate variable
 
 ``` r
-ggscatter(sdat[["prevention.pos"]], x=covar, y="prevention.pos", facet.by=between, short.panel.labs = F) + 
+ggscatter(sdat[["promotion.pos"]], x=covar, y="promotion.pos", facet.by=between, short.panel.labs = F) + 
  stat_smooth(method = "lm", span = 0.9)
 ```
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](ancova_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](ancova_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 ### Assumption: Homogeneity of data distribution
 
-|                  | var            | method         | formula                      |   n | DFn.df1 | DFd.df2 | statistic |     p | p.signif |
-|:-----------------|:---------------|:---------------|:-----------------------------|----:|--------:|--------:|----------:|------:|:---------|
-| prevention.pos.1 | prevention.pos | Levene’s test  | `.res`\~`testType`\*`gender` | 107 |       5 |     101 |     1.803 | 0.119 | ns       |
-| prevention.pos.2 | prevention.pos | Anova’s slopes | `.res`\~`testType`\*`gender` | 107 |       5 |      95 |     1.481 | 0.203 | ns       |
+|                 | var           | method         | formula             |   n | DFn.df1 | DFd.df2 | statistic |     p | p.signif |
+|:----------------|:--------------|:---------------|:--------------------|----:|--------:|--------:|----------:|------:|:---------|
+| promotion.pos.1 | promotion.pos | Levene’s test  | `.res`\~`Condition` | 104 |       2 |     101 |     1.459 | 0.237 | ns       |
+| promotion.pos.2 | promotion.pos | Anova’s slopes | `.res`\~`Condition` | 104 |       2 |      98 |     0.829 | 0.439 | ns       |
 
 ## Saving the Data with Normal Distribution Used for Performing ANCOVA test
 
@@ -146,84 +158,63 @@ write.csv(ndat, paste0("../data/table-with-normal-distribution.csv"))
 
 Descriptive statistics of data with normal distribution
 
-|                  | testType | gender    | variable       |   n |  mean | median |  min |  max |    sd |    se |    ci |   iqr |
-|:-----------------|:---------|:----------|:---------------|----:|------:|-------:|-----:|-----:|------:|------:|------:|------:|
-| prevention.pos.1 | default  | Feminino  | prevention.pos |  15 | 3.347 |  2.790 | 1.00 | 5.63 | 1.611 | 0.416 | 0.892 | 2.880 |
-| prevention.pos.2 | default  | Masculino | prevention.pos |  28 | 3.080 |  2.830 | 1.46 | 6.50 | 1.152 | 0.218 | 0.447 | 1.402 |
-| prevention.pos.3 | stFemale | Feminino  | prevention.pos |  15 | 3.684 |  3.380 | 1.75 | 6.75 | 1.384 | 0.357 | 0.766 | 1.980 |
-| prevention.pos.4 | stFemale | Masculino | prevention.pos |  15 | 3.091 |  2.830 | 1.46 | 5.04 | 1.345 | 0.347 | 0.745 | 2.490 |
-| prevention.pos.5 | stMale   | Feminino  | prevention.pos |  14 | 3.504 |  3.435 | 1.08 | 5.67 | 1.481 | 0.396 | 0.855 | 2.170 |
-| prevention.pos.6 | stMale   | Masculino | prevention.pos |  20 | 2.818 |  2.665 | 1.42 | 5.17 | 0.936 | 0.209 | 0.438 | 1.242 |
+|                 | Condition | variable      |   n |  mean | median |   min |   max |    sd |    se |    ci |   iqr |
+|:----------------|:----------|:--------------|----:|------:|-------:|------:|------:|------:|------:|------:|------:|
+| promotion.pos.1 | control   | promotion.pos |  43 | 1.695 |  1.658 | 1.153 | 2.345 | 0.345 | 0.053 | 0.106 | 0.556 |
+| promotion.pos.2 | inBoost   | promotion.pos |  32 | 1.613 |  1.568 | 1.118 | 2.500 | 0.295 | 0.052 | 0.106 | 0.418 |
+| promotion.pos.3 | inThreat  | promotion.pos |  29 | 1.746 |  1.744 | 1.118 | 2.381 | 0.273 | 0.051 | 0.104 | 0.324 |
 
-![](ancova_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](ancova_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 ## Computation of ANCOVA test and Pairwise Comparison
 
 ### ANCOVA test
 
-| var            | Effect          | DFn | DFd |   SSn |     SSd |     F |     p |   ges | p.signif |
-|:---------------|:----------------|----:|----:|------:|--------:|------:|------:|------:|:---------|
-| prevention.pos | prevention.pre  |   1 | 100 | 1.843 | 167.594 | 1.100 | 0.297 | 0.011 | ns       |
-| prevention.pos | testType        |   2 | 100 | 1.120 | 167.594 | 0.334 | 0.717 | 0.007 | ns       |
-| prevention.pos | gender          |   1 | 100 | 6.112 | 167.594 | 3.647 | 0.059 | 0.035 | ns       |
-| prevention.pos | testType:gender |   2 | 100 | 1.123 | 167.594 | 0.335 | 0.716 | 0.007 | ns       |
+| var           | Effect        | DFn | DFd |   SSn |   SSd |     F |     p |   ges | p.signif |
+|:--------------|:--------------|----:|----:|------:|------:|------:|------:|------:|:---------|
+| promotion.pos | promotion.pre |   1 | 100 | 0.846 | 8.923 | 9.484 | 0.003 | 0.087 | \*\*     |
+| promotion.pos | Condition     |   2 | 100 | 0.161 | 8.923 | 0.904 | 0.408 | 0.018 | ns       |
 
 ### Pairwise comparison
 
-| var            | testType | gender    | group1   | group2    | estimate | conf.low | conf.high |    se | statistic |     p | p.adj | p.adj.signif |
-|:---------------|:---------|:----------|:---------|:----------|---------:|---------:|----------:|------:|----------:|------:|------:|:-------------|
-| prevention.pos | NA       | Feminino  | default  | stFemale  |   -0.357 |   -1.296 |     0.581 | 0.473 |    -0.755 | 0.452 | 1.000 | ns           |
-| prevention.pos | NA       | Feminino  | default  | stMale    |   -0.164 |   -1.118 |     0.791 | 0.481 |    -0.340 | 0.734 | 1.000 | ns           |
-| prevention.pos | NA       | Feminino  | stFemale | stMale    |    0.193 |   -0.761 |     1.148 | 0.481 |     0.402 | 0.688 | 1.000 | ns           |
-| prevention.pos | NA       | Masculino | default  | stFemale  |    0.009 |   -0.814 |     0.831 | 0.415 |     0.021 | 0.983 | 1.000 | ns           |
-| prevention.pos | NA       | Masculino | default  | stMale    |    0.313 |   -0.445 |     1.072 | 0.382 |     0.820 | 0.414 | 1.000 | ns           |
-| prevention.pos | NA       | Masculino | stFemale | stMale    |    0.305 |   -0.575 |     1.184 | 0.443 |     0.688 | 0.493 | 1.000 | ns           |
-| prevention.pos | default  | NA        | Feminino | Masculino |    0.227 |   -0.598 |     1.053 | 0.416 |     0.547 | 0.586 | 0.586 | ns           |
-| prevention.pos | stFemale | NA        | Feminino | Masculino |    0.593 |   -0.345 |     1.531 | 0.473 |     1.255 | 0.212 | 0.212 | ns           |
-| prevention.pos | stMale   | NA        | Feminino | Masculino |    0.705 |   -0.191 |     1.600 | 0.451 |     1.561 | 0.122 | 0.122 | ns           |
+| var           | Condition | group1  | group2   | estimate | conf.low | conf.high |    se | statistic |     p | p.adj | p.adj.signif |
+|:--------------|:----------|:--------|:---------|---------:|---------:|----------:|------:|----------:|------:|------:|:-------------|
+| promotion.pos | NA        | control | inBoost  |    0.035 |   -0.107 |     0.177 | 0.071 |     0.491 | 0.624 | 1.000 | ns           |
+| promotion.pos | NA        | control | inThreat |   -0.067 |   -0.210 |     0.076 | 0.072 |    -0.931 | 0.354 | 1.000 | ns           |
+| promotion.pos | NA        | inBoost | inThreat |   -0.102 |   -0.255 |     0.051 | 0.077 |    -1.321 | 0.190 | 0.569 | ns           |
 
 ### Descriptive Statistic of Estimated Marginal Means
 
-| var            | testType | gender    | prevention.pre | emmean | se.emms |  df | conf.low | conf.high | method       |   n |  mean | median |  min |  max |    sd | se.ds |    ci |   iqr | n.prevention.pre | mean.prevention.pre | median.prevention.pre | min.prevention.pre | max.prevention.pre | sd.prevention.pre | se.prevention.pre | ci.prevention.pre | iqr.prevention.pre | sd.emms |
-|:---------------|:---------|:----------|---------------:|-------:|--------:|----:|---------:|----------:|:-------------|----:|------:|-------:|-----:|-----:|------:|------:|------:|------:|-----------------:|--------------------:|----------------------:|-------------------:|-------------------:|------------------:|------------------:|------------------:|-------------------:|--------:|
-| prevention.pos | default  | Feminino  |          6.664 |  3.332 |   0.335 | 100 |    2.669 |     3.996 | Emmeans test |  15 | 3.347 |  2.790 | 1.00 | 5.63 | 1.611 | 0.416 | 0.892 | 2.880 |               15 |               7.000 |                     6 |                  3 |                 12 |             2.828 |             0.730 |             1.566 |               4.50 |   1.296 |
-| prevention.pos | default  | Masculino |          6.664 |  3.105 |   0.246 | 100 |    2.617 |     3.593 | Emmeans test |  28 | 3.080 |  2.830 | 1.46 | 6.50 | 1.152 | 0.218 | 0.447 | 1.402 |               28 |               6.071 |                     6 |                  3 |                 10 |             2.071 |             0.391 |             0.803 |               2.50 |   1.301 |
-| prevention.pos | stFemale | Feminino  |          6.664 |  3.690 |   0.334 | 100 |    3.026 |     4.353 | Emmeans test |  15 | 3.684 |  3.380 | 1.75 | 6.75 | 1.384 | 0.357 | 0.766 | 1.980 |               15 |               6.533 |                     5 |                  3 |                 15 |             4.155 |             1.073 |             2.301 |               4.00 |   1.295 |
-| prevention.pos | stFemale | Masculino |          6.664 |  3.096 |   0.334 | 100 |    2.433 |     3.759 | Emmeans test |  15 | 3.091 |  2.830 | 1.46 | 5.04 | 1.345 | 0.347 | 0.745 | 2.490 |               15 |               6.533 |                     6 |                  3 |                 11 |             3.044 |             0.786 |             1.686 |               5.00 |   1.295 |
-| prevention.pos | stMale   | Feminino  |          6.664 |  3.496 |   0.346 | 100 |    2.809 |     4.183 | Emmeans test |  14 | 3.504 |  3.435 | 1.08 | 5.67 | 1.481 | 0.396 | 0.855 | 2.170 |               14 |               6.857 |                     5 |                  3 |                 13 |             3.613 |             0.966 |             2.086 |               5.75 |   1.295 |
-| prevention.pos | stMale   | Masculino |          6.664 |  2.791 |   0.291 | 100 |    2.215 |     3.368 | Emmeans test |  20 | 2.818 |  2.665 | 1.42 | 5.17 | 0.936 | 0.209 | 0.438 | 1.242 |               20 |               7.300 |                     6 |                  3 |                 15 |             3.614 |             0.808 |             1.692 |               4.25 |   1.300 |
+| var           | Condition | promotion.pre | emmean | se.emms |  df | conf.low | conf.high | method       |   n |  mean | median |   min |   max |    sd | se.ds |    ci |   iqr | n.promotion.pre | mean.promotion.pre | median.promotion.pre | min.promotion.pre | max.promotion.pre | sd.promotion.pre | se.promotion.pre | ci.promotion.pre | iqr.promotion.pre | sd.emms |
+|:--------------|:----------|--------------:|-------:|--------:|----:|---------:|----------:|:-------------|----:|------:|-------:|------:|------:|------:|------:|------:|------:|----------------:|-------------------:|---------------------:|------------------:|------------------:|-----------------:|-----------------:|-----------------:|------------------:|--------:|
+| promotion.pos | control   |          3.34 |  1.676 |   0.046 | 100 |    1.585 |     1.767 | Emmeans test |  43 | 1.695 |  1.658 | 1.153 | 2.345 | 0.345 | 0.053 | 0.106 | 0.556 |              43 |              3.178 |                 3.33 |              1.00 |              4.67 |            0.765 |            0.117 |            0.235 |             1.000 |   0.301 |
+| promotion.pos | inBoost   |          3.34 |  1.641 |   0.054 | 100 |    1.535 |     1.747 | Emmeans test |  32 | 1.613 |  1.568 | 1.118 | 2.500 | 0.295 | 0.052 | 0.106 | 0.418 |              32 |              3.585 |                 3.67 |              2.33 |              4.67 |            0.605 |            0.107 |            0.218 |             0.752 |   0.303 |
+| promotion.pos | inThreat  |          3.34 |  1.743 |   0.055 | 100 |    1.633 |     1.853 | Emmeans test |  29 | 1.746 |  1.744 | 1.118 | 2.381 | 0.273 | 0.051 | 0.104 | 0.324 |              29 |              3.310 |                 3.67 |              1.67 |              5.00 |            0.996 |            0.185 |            0.379 |             1.670 |   0.299 |
 
-### Ancova plots for the dependent variable “prevention.pos”
+### Ancova plots for the dependent variable “promotion.pos”
 
 ``` r
-plots <- twoWayAncovaPlots(sdat[["prevention.pos"]], "prevention.pos", between
-, aov[["prevention.pos"]], pwc[["prevention.pos"]], addParam = c("jitter"), font.label.size=14, step.increase=0.25)
+plots <- oneWayAncovaPlots(sdat[["promotion.pos"]], "promotion.pos", between
+, aov[["promotion.pos"]], pwc[["promotion.pos"]], addParam = c("jitter"), font.label.size=14, step.increase=0.25)
 ```
 
-#### Plot for: `prevention.pos` \~ `testType`
+#### Plot for: `promotion.pos` \~ `Condition`
 
 ``` r
-plots[["testType"]]
-```
-
-![](ancova_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
-
-#### Plot for: `prevention.pos` \~ `gender`
-
-``` r
-plots[["gender"]]
+plots[["Condition"]]
 ```
 
 ![](ancova_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 ### Textual Report
 
-After controlling the linearity of covariance “prevention.pre”, ANCOVA
-tests with independent between-subjects variables “testType” (stFemale,
-stMale, default) and “gender” (Masculino, Feminino) were performed to
-determine statistically significant difference on the dependent varibles
-“prevention.pos”. For the dependent variable “prevention.pos”, there was
-not statistically significant effects.
+After controlling the linearity of covariance “promotion.pre”, ANCOVA
+tests with independent between-subjects variables “Condition” (inThreat,
+inBoost, control) were performed to determine statistically significant
+difference on the dependent varibles “promotion.pos”. For the dependent
+variable “promotion.pos”, there was statistically significant effects in
+the factor “promotion.pre” with F(1,100)=9.484, p=0.003 and ges=0.087
+(effect size).
 
 ## Tips and References
 

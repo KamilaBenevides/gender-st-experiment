@@ -1,5 +1,5 @@
 #' ---
-#' title: "ANCOVA test for `prevention.pos`~`prevention.pre`+`testType`*`gender`"
+#' title: "ANCOVA test for `promotion.pos`~`promotion.pre`+`Condition`"
 #' author: Geiser C. Challco <geiser@alumni.usp.br>
 #' comment: This file is automatically generate by Shiny-Statistic app (https://statistic.geiser.tech/)
 #'          Author - Geiser C. Challco <geiser@alumni.usp.br>
@@ -46,7 +46,7 @@ library(rshinystatistics)
 #' 
 #' * R-script file: [../code/ancova.R](../code/ancova.R)
 #' * Initial table file: [../data/initial-table.csv](../data/initial-table.csv)
-#' * Data for prevention.pos [../data/table-for-prevention.pos.csv](../data/table-for-prevention.pos.csv)
+#' * Data for promotion.pos [../data/table-for-promotion.pos.csv](../data/table-for-promotion.pos.csv)
 #' * Table without outliers and normal distribution of  data: [../data/table-with-normal-distribution.csv](../data/table-with-normal-distribution.csv)
 #' * Other data files: [../data/](../data/)
 #' * Files related to the presented results: [../results/](../results/)
@@ -54,9 +54,9 @@ library(rshinystatistics)
 #' 
 ## ---- include=FALSE-----------------------------------------------------------
 wid <- "responseId"
-covar <- "prevention.pre"
-between <- c("testType","gender")
-dvs <- c("prevention.pos")
+covar <- "promotion.pre"
+between <- c("Condition")
+dvs <- c("promotion.pos")
 names(dvs) <- dvs
 
 dat <- lapply(dvs, FUN = function(dv) {
@@ -78,7 +78,7 @@ df <- dat; df[[covar]] <- dat[[1]]
 
 #' 
 ## ---- echo=FALSE--------------------------------------------------------------
-car::Boxplot(`prevention.pos` ~ `testType`*`gender`, data = dat[["prevention.pos"]], id = list(n = Inf))
+car::Boxplot(`promotion.pos` ~ `Condition`, data = dat[["promotion.pos"]], id = list(n = Inf))
 
 #' 
 #' ## Checking of Assumptions
@@ -86,6 +86,16 @@ car::Boxplot(`prevention.pos` ~ `testType`*`gender`, data = dat[["prevention.pos
 #' ### Assumption: Symmetry and treatment of outliers
 #' 
 #' #### Applying transformation for skewness data when normality is not achieved
+#' 
+#' 
+#'  Applying transformation in "promotion.pos" to reduce skewness
+#' 
+## -----------------------------------------------------------------------------
+density.plot.by.residual(rdat[["promotion.pos"]],"promotion.pos",between,c(),covar)
+rdat[["promotion.pos"]][["promotion.pos"]] <- sqrt(dat[["promotion.pos"]][["promotion.pos"]])
+
+density.plot.by.residual(rdat[["promotion.pos"]],"promotion.pos",between,c(),covar)
+
 #' 
 #' 
 #' 
@@ -99,7 +109,7 @@ car::Boxplot(`prevention.pos` ~ `testType`*`gender`, data = dat[["prevention.pos
 #' 
 ## -----------------------------------------------------------------------------
 non.normal <- list(
-
+"promotion.pos" = c("d23aa670-9d47-11eb-9b7e-0daf340a71ab","1160f4b0-a439-11eb-8cbb-599e427a3fce","670fa950-f6e7-11eb-991d-7bf2f9a6c3b9")
 )
 sdat <- removeFromDataTable(rdat, non.normal, wid)
 
@@ -145,7 +155,7 @@ sdat <- removeFromDataTable(rdat, non.normal, wid)
 #' ### Assumption: Linearity of dependent variables and covariate variable 
 #' 
 ## -----------------------------------------------------------------------------
-ggscatter(sdat[["prevention.pos"]], x=covar, y="prevention.pos", facet.by=between, short.panel.labs = F) + 
+ggscatter(sdat[["promotion.pos"]], x=covar, y="promotion.pos", facet.by=between, short.panel.labs = F) + 
  stat_smooth(method = "lm", span = 0.9)
 
 #' 
@@ -179,7 +189,7 @@ write.csv(ndat, paste0("../data/table-with-normal-distribution.csv"))
 #' 
 ## ---- echo=FALSE--------------------------------------------------------------
 for (dv in dvs) {
-  car::Boxplot(`dv` ~ `testType`*`gender`, data = sdat[[dv]] %>% cbind(dv=sdat[[dv]][[dv]]), id = list(n = Inf))  
+  car::Boxplot(`dv` ~ `Condition`, data = sdat[[dv]] %>% cbind(dv=sdat[[dv]][[dv]]), id = list(n = Inf))  
 }
 
 #' 
@@ -212,28 +222,22 @@ pwc <- ancova.pwc(sdat, dvs, between, covar, p.adjust.method = "bonferroni")
 
 #' 
 #' 
-#' ### Ancova plots for the dependent variable "prevention.pos"
+#' ### Ancova plots for the dependent variable "promotion.pos"
 ## -----------------------------------------------------------------------------
-plots <- twoWayAncovaPlots(sdat[["prevention.pos"]], "prevention.pos", between
-, aov[["prevention.pos"]], pwc[["prevention.pos"]], addParam = c("jitter"), font.label.size=14, step.increase=0.25)
+plots <- oneWayAncovaPlots(sdat[["promotion.pos"]], "promotion.pos", between
+, aov[["promotion.pos"]], pwc[["promotion.pos"]], addParam = c("jitter"), font.label.size=14, step.increase=0.25)
 
 #' 
-#' #### Plot for: `prevention.pos` ~ `testType`
+#' #### Plot for: `promotion.pos` ~ `Condition`
 ## ---- fig.width=7, fig.height=7-----------------------------------------------
-plots[["testType"]]
-
-#' 
-#' 
-#' #### Plot for: `prevention.pos` ~ `gender`
-## ---- fig.width=7, fig.height=7-----------------------------------------------
-plots[["gender"]]
+plots[["Condition"]]
 
 #' 
 #' 
 #' 
 #' ### Textual Report
 #' 
-#' After controlling the linearity of covariance "prevention.pre", ANCOVA tests with independent between-subjects variables "testType" (stFemale, stMale, default) and "gender" (Masculino, Feminino) were performed to determine statistically significant difference on the dependent varibles "prevention.pos". For the dependent variable "prevention.pos", there was not statistically significant effects.
+#' After controlling the linearity of covariance "promotion.pre", ANCOVA tests with independent between-subjects variables "Condition" (inThreat, inBoost, control) were performed to determine statistically significant difference on the dependent varibles "promotion.pos". For the dependent variable "promotion.pos", there was statistically significant effects in the factor "promotion.pre" with F(1,100)=9.484, p=0.003 and ges=0.087 (effect size).
 #' 
 #' 
 #' 
